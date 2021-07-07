@@ -1,0 +1,112 @@
+{% extends "layouts/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-12">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Busqueda de clientes</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#!">Formularios</a></li>
+                                <li class="breadcrumb-item"><a href="#!">Busqueda</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                {% if message.tags %}
+                <div class="alert alert-warning" role="alert">{{ message }}</div>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            {% endif %}
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h5>Ingrese el número de cedula</h5>
+                            <div class="card-header-right">
+                                <div class="btn-group card-option">
+                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="feather icon-more-horizontal"></i>
+                                    </button>
+                                    <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                                        <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
+                                        <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
+                                        <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
+                                        <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="card-body p-0">
+                                <div class="tab-content" id="pills-tabContent">
+                                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                        <div class="table-responsive">
+                                            <div class="customer-scroll" style="height:500px;position:relative;">
+											<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+											{% csrf_token %}
+                                                    {% if form.non_field_errors %}
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {% for error in form.non_field_errors %}
+                                                        {{ error }}
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% endif %}
+                                                    {% for field in form.visible_fields %}
+                                                      <div class="form-group">
+                                                        {{ field.label_tag }}
+                                                        {% if form.is_bound %}
+                                                          {% if field.errors %}
+                                                            {% render_field field class="form-control is-invalid" %}
+                                                            {% for error in field.errors %}
+                                                              <div class="invalid-feedback">
+                                                                {{ error }}
+                                                              </div>
+                                                            {% endfor %}
+                                                          {% else %}
+                                                            {% render_field field class="form-control is-valid" %}
+                                                          {% endif %}
+                                                        {% else %}
+                                                          {% render_field field class="form-control" %}
+                                                        {% endif %}
+
+                                                        {% if field.help_text %}
+                                                          <small class="form-text text-muted">{{ field.help_text }}</small>
+                                                        {% endif %}
+                                                      </div>
+                                                    {% endfor %}
+                                                    <button type="submit"  class="btn btn-success" name="guardarc">Guardar</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+{% endblock javascripts %}

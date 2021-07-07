@@ -1,0 +1,51 @@
+
+<form class="form-horizontal" role="form" method="POST">
+    {%csrf_token%}
+    <div class="col-sm-4">
+        <h5>Ingrese el número de codumento </h5>
+        <div class="input-group">
+            <input class="form-control" name="numero_documento" />
+        </div>
+    </div>
+    <div class="col-sm-3">
+        <br/>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+    </div>
+
+    <table  id="" class="display table table-striped">
+        <thead>
+        <tr>
+            <th><span>Documento</span></th>
+            <th><span>Tipo</span></th>
+            <th><span>Nombres</span></th>
+            <th><span>apellidos</span></th>
+            <th><span>Numero</span></th>
+            <th><span>Fecha plan</span></th>
+            <th><span>Tipo de plan</span></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% if Doc_Cliente %}
+        {% for i in Doc_Cliente %}
+        <tr>
+            <td>{{i.numero_documento}}</td>
+            <td>{{i.tipo_documento}}</td>
+            <td>{{i.nombres}}</td>
+            <td>{{i.apellidos}}</td>
+            <td>{{i.telefono_mig}}</td>
+            <td>{{i.Fecha_Venta}}</td>
+            <td>{{i.tipo_plan}}</td>
+        </tr>
+        {% endfor %}
+        {% else %}
+        <p>No se encontro ningún documento asociado </p>
+        <li class="nav-item">
+            <a href="/C_add" class="nav-link ">
+                            <span class="pcoded-micon">
+                                <i class="feather icon-home"></i></span><span class="pcoded-mtext">Agregar nuevo</span></a>
+					</li>
+                            {% endif %}
+                            </tbody>
+</table>
+
+</form>

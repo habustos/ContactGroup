@@ -1,0 +1,179 @@
+{% extends "layouts/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %} Ventas {% endblock %}
+{% block content %}
+    <section class="pcoded-main-container">
+        <div class="pcoded-content">
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Formularío de ventas</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#!">Formularios</a></li>
+                                <li class="breadcrumb-item"><a href="#!">Ventas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+         {% if message.tags %}
+<div class="alert alert-warning" role="alert">
+    {{ message }}
+</div>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Ingrese la información del cliente</h5>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12">
+{% load widget_tweaks %}
+<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" >Nombres: </span>
+  </div>
+<div class="form-group">{% if form.is_bound %}{% if form.primer_nombre.errors %}{{form.primer_nombre | attr:'class:form-control is-invalid' }} {% for error in form.primer_nombre.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.primer_nombre | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.primer_nombre | attr:'class:form-control' }}{% endif %}{% if form.primer_nombre.help_text %}<small class="form-text text-muted">{{ form.primer_nombre.help_text }}</small>{% endif %}</div>
+<div class="form-group">{% if form.is_bound %}{% if form.segundo_nombre.errors %}{{form.segundo_nombre | attr:'class:form-control is-invalid' }} {% for error in form.segundo_nombre.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.segundo_nombre | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.segundo_nombre | attr:'class:form-control' }}{% endif %}{% if form.segundo_nombre.help_text %}<small class="form-text text-muted">{{ form.segundo_nombre.help_text }}</small>{% endif %}</div>
+
+</div>
+    <br>
+    <div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" >Apellidos: </span>
+  </div>
+<div class="form-group">{% if form.is_bound %}{% if form.apellidos.errors %}{{form.apellidos | attr:'class:form-control is-invalid' }} {% for error in form.apellidos.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.apellidos | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.apellidos | attr:'class:form-control' }}{% endif %}{% if form.apellidos.help_text %}<small class="form-text text-muted">{{ form.apellidos.help_text }}</small>{% endif %}</div>
+</div>
+    <br>
+        <div class="form-group">{{ form.tipo_documento.label_tag }}{% if form.is_bound %}{% if form.tipo_documento.errors %}{{form.tipo_documento | attr:'class:form-control is-invalid' }} {% for error in form.tipo_documento.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.tipo_documento | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.tipo_documento | attr:'class:form-control' }}{% endif %}{% if form.tipo_documento.help_text %}<small class="form-text text-muted">{{ form.tipo_documento.help_text }}</small>{% endif %}</div>
+        <div class="form-group">{{ form.numero_documento.label_tag }}{% if form.is_bound %}{% if form.numero_documento.errors %}{{form.numero_documento | attr:'class:form-control is-invalid' }} {% for error in form.numero_documento.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.numero_documento | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.numero_documento | attr:'class:form-control' }}{% endif %}{% if form.numero_documento.help_text %}<small class="form-text text-muted">{{ form.numero_documento.help_text }}</small>{% endif %}</div>
+    <div class="form-group">{{ form.fecha_expedicion.label_tag }}{% if form.is_bound %}{% if form.fecha_expedicion.errors %}{{form.fecha_expedicion | attr:'class:form-control is-invalid' }} {% for error in form.fecha_expedicion.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.fecha_expedicion | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.fecha_expedicion | attr:'class:form-control' }}{% endif %}{% if form.fecha_expedicion.help_text %}<small class="form-text text-muted">{{ form.fecha_expedicion.help_text }}</small>{% endif %}</div>
+    <hr>
+        <h6>Lugar de expedición</h6>
+    <div class="input-group">
+<div class="form-group">{{ form.departamento.label_tag }}{% if form.is_bound %}{% if form.departamento.errors %}{{form.departamento | attr:'class:form-control is-invalid' }} {% for error in form.departamento.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.departamento | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.departamento | attr:'class:form-control' }}{% endif %}{% if form.departamento.help_text %}<small class="form-text text-muted">{{ form.departamento.help_text }}</small>{% endif %}</div>
+<div class="form-group">{{ form.municipio.label_tag }}{% if form.is_bound %}{% if form.municipio.errors %}{{form.municipio | attr:'class:form-control is-invalid' }} {% for error in form.municipio.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.municipio | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.municipio | attr:'class:form-control' }}{% endif %}{% if form.municipio.help_text %}<small class="form-text text-muted">{{ form.municipio.help_text }}</small>{% endif %}</div>
+    </div>
+           {%comment%}
+    <div class="input-group">
+        {#%if not cliente.sector%#}
+        {#{cliente.sector}#}
+        <div class="form-group"><label ><br></label>sector{% if form.is_bound %}{% if form.sector_1.errors %}{{form.sector_1 | attr:'class:form-control is-invalid' }} {% for error in form.sector_1.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.sector_1 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.sector_1 | attr:'class:form-control' }}{% endif %}{% if form.sector_1.help_text %}<small class="form-text text-muted">{{ form.sector_1.help_text }}</small>{% endif %}</div>
+        <div class="form-group"><label ><br></label>{% if form.is_bound %}{% if form.sector_2.errors %}{{form.sector_2 | attr:'class:form-control is-invalid' }} {% for error in form.sector_2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.sector_2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.sector_2 | attr:'class:form-control' }}{% endif %}{% if form.sector_2.help_text %}<small class="form-text text-muted">{{ form.sector_2.help_text }}</small>{% endif %}</div>
+</div>
+        <div class="input-group">
+            {#%endif%#}
+<div class="form-group">{% if form.is_bound %}{% if form.avenida_1.errors %}{{form.avenida_1 | attr:'class:form-control is-invalid' }} {% for error in form.avenida_1.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.avenida_1 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.avenida_1 | attr:'class:form-control' }}{% endif %}{% if form.avenida_1.help_text %}<small class="form-text text-muted">{{ form.avenida_1.help_text }}</small>{% endif %}</div>
+<div class="form-group">{% if form.is_bound %}{% if form.numero_1.errors %}{{form.numero_1 | attr:'class:form-control is-invalid' }} {% for error in form.numero_1.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.numero_1 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.numero_1 | attr:'class:form-control' }}{% endif %}{% if form.numero_1.help_text %}<small class="form-text text-muted">{{ form.numero_1.help_text }}</small>{% endif %}</div>-
+            <div class="form-group">{% if form.is_bound %}{% if form.letra_1.errors %}{{form.letra_1 | attr:'class:form-control is-invalid' }} {% for error in form.letra_1.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.letra_1 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.letra_1 | attr:'class:form-control' }}{% endif %}{% if form.letra_1.help_text %}<small class="form-text text-muted">{{ form.letra_1.help_text }}</small>{% endif %}</div>
+            <div class="form-group">{% if form.is_bound %}{% if form.avenida_2.errors %}{{form.avenida_2 | attr:'class:form-control is-invalid' }} {% for error in form.avenida_2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.avenida_2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.avenida_2 | attr:'class:form-control' }}{% endif %}{% if form.avenida_2.help_text %}<small class="form-text text-muted">{{ form.avenida_2.help_text }}</small>{% endif %}</div>
+<div class="form-group">{% if form.is_bound %}{% if form.numero_2.errors %}{{form.numero_2 | attr:'class:form-control is-invalid' }} {% for error in form.numero_2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.numero_2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.numero_2 | attr:'class:form-control' }}{% endif %}{% if form.numero_2.help_text %}<small class="form-text text-muted">{{ form.numero_2.help_text }}</small>{% endif %}</div>
+<div class="form-group">{% if form.is_bound %}{% if form.letra_2.errors %}{{form.letra_2 | attr:'class:form-control nis-invalid' }} {% for error in form.letra_2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.letra_2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.letra_2 | attr:'class:form-control' }}{% endif %}{% if form.letra_2.help_text %}<small class="form-text text-muted">{{ form.letra_2.help_text }}</small>{% endif %}</div>
+            <div class="form-group">{% if form.is_bound %}{% if form.detalle_1_opc.errors %}{{form.detalle_1_opc | attr:'class:form-control is-invalid' }} {% for error in form.detalle_1_opc.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.detalle_1_opc | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.detalle_1_opc | attr:'class:form-control' }}{% endif %}{% if form.detalle_1_opc.help_text %}<small class="form-text text-muted">{{ form.detalle_1_opc.help_text }}</small>{% endif %}</div>
+            <div class="form-group">{% if form.is_bound %}{% if form.detalle_1.errors %}{{form.detalle_1 | attr:'class:form-control is-invalid' }} {% for error in form.detalle_1.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.detalle_1 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.detalle_1 | attr:'class:form-control' }}{% endif %}{% if form.detalle_1.help_text %}<small class="form-text text-muted">{{ form.detalle_1.help_text }}</small>{% endif %}</div>
+<div class="form-group">{% if form.is_bound %}{% if form.detalle_2_opc.errors %}{{form.detalle_2_opc | attr:'class:form-control is-invalid' }} {% for error in form.detalle_2_opc.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.detalle_2_opc | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.detalle_2_opc | attr:'class:form-control' }}{% endif %}{% if form.detalle_2_opc.help_text %}<small class="form-text text-muted">{{ form.detalle_2_opc.help_text }}</small>{% endif %}</div>
+                        <div class="form-group">{% if form.is_bound %}{% if form.detalle_2.errors %}{{form.detalle_2 | attr:'class:form-control is-invalid' }} {% for error in form.detalle_2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.detalle_2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.detalle_2 | attr:'class:form-control' }}{% endif %}{% if form.detalle_2.help_text %}<small class="form-text text-muted">{{ form.detalle_2.help_text }}</small>{% endif %}</div>
+
+</div>    <br>
+    <br>
+<div class="form-group">{{ form.documento2.label_tag }}{% if form.is_bound %}{% if form.documento2.errors %}{{form.documento2 | attr:'class:form-control is-invalid' }} {% for error in form.documento2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.documento2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.documento2 | attr:'class:form-control' }}{% endif %}{% if form.documento2.help_text %}<small class="form-text text-muted">{{ form.documento2.help_text }}</small>{% endif %}</div>
+<div class="form-group">{{ form.documento3.label_tag }}{% if form.is_bound %}{% if form.documento3.errors %}{{form.documento3 | attr:'class:form-control is-invalid' }} {% for error in form.documento3.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.documento3 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.documento3 | attr:'class:form-control' }}{% endif %}{% if form.documento3.help_text %}<small class="form-text text-muted">{{ form.documento3.help_text }}</small>{% endif %}</div>
+
+        <hr>
+    <h5>Información de contacto</h5>
+<div class="form-group">{{ form.email.label_tag }}{% if form.is_bound %}{% if form.email.errors %}{{form.email | attr:'class:form-control is-invalid' }} {% for error in form.email.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.email | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.email | attr:'class:form-control' }}{% endif %}{% if form.email.help_text %}<small class="form-text text-muted">{{ form.email.help_text }}</small>{% endif %}</div>
+    <br>
+    <div class="input-group">
+    <div class="form-group">{{ form.celular.label_tag }}{% if form.is_bound %}{% if form.celular.errors %}{{form.celular | attr:'class:form-control is-invalid' }} {% for error in form.celular.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.celular | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.celular | attr:'class:form-control' }}{% endif %}{% if form.celular.help_text %}<small class="form-text text-muted">{{ form.celular.help_text }}</small>{% endif %}</div>
+        <div class="form-group">{{ form.telefono.label_tag }}{% if form.is_bound %}{% if form.telefono.errors %}{{form.telefono | attr:'class:form-control is-invalid' }} {% for error in form.telefono.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.telefono | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.telefono | attr:'class:form-control' }}{% endif %}{% if form.telefono.help_text %}<small class="form-text text-muted">{{ form.telefono.help_text }}</small>{% endif %}</div>
+    </div>
+            <hr>
+
+    <hr>
+
+    <h5>Documentos</h5>
+    <div class="input-group">
+        <div class="form2-group">{% if form2.is_bound %}{% if form2.documento2.errors %}{{form2.documento2 | attr:'class:form2-control is-invalid' }} {% for error in form2.documento2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form2.documento2 | attr:'class:form2-control is-valid' }}{% endif %}{% else %}{{form2.documento2 | attr:'class:form2-control' }}{% endif %}{% if form2.documento2.help_text %}<small class="form2-text text-muted">{{ form2.documento2.help_text }}</small>{% endif %}</div>
+        <div class="form2-group">{% if form2.is_bound %}{% if form2.documento3.errors %}{{form2.documento3 | attr:'class:form2-control is-invalid' }} {% for error in form2.documento3.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form2.documento3 | attr:'class:form2-control is-valid' }}{% endif %}{% else %}{{form2.documento3 | attr:'class:form2-control' }}{% endif %}{% if form2.documento3.help_text %}<small class="form2-text text-muted">{{ form2.documento3.help_text }}</small>{% endif %}</div>
+    </div>
+    <hr>
+{%endcomment%}
+        <h5>Portafolio</h5>
+    <br>
+    {{documento.tipo_venta}}
+    <hr>
+  <!--<a href="/Busqueda_Cedula">Atras</a>-->
+    {%if documento.tipo_venta != "MOVIL"%}
+    <div class="form-group">{{ form.departamento_dom.label_tag }}{% if form.is_bound %}{% if form.departamento_dom.errors %}{{form.departamento_dom | attr:'class:form-control is-invalid' }} {% for error in form.departamento_dom.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.departamento_dom | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.departamento_dom | attr:'class:form-control' }}{% endif %}{% if form.departamento_dom.help_text %}<small class="form-text text-muted">{{ form.departamento_dom.help_text }}</small>{% endif %}</div>
+<div class="form-group">{{ form.municipio_dom.label_tag }}{% if form.is_bound %}{% if form.municipio_dom.errors %}{{form.municipio_dom | attr:'class:form-control is-invalid' }} {% for error in form.municipio_dom.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.municipio_dom | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.municipio_dom | attr:'class:form-control' }}{% endif %}{% if form.municipio_dom.help_text %}<small class="form-text text-muted">{{ form.municipio_dom.help_text }}</small>{% endif %}</div>    </div>
+    <div class="input-group">
+        {#%if not cliente.sector%#}
+        {#{cliente.sector}#}
+        <div class="form-group"><label ><br></label>sector{% if form.is_bound %}{% if form.sector_1.errors %}{{form.sector_1 | attr:'class:form-control is-invalid' }} {% for error in form.sector_1.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.sector_1 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.sector_1 | attr:'class:form-control' }}{% endif %}{% if form.sector_1.help_text %}<small class="form-text text-muted">{{ form.sector_1.help_text }}</small>{% endif %}</div>
+        <div class="form-group"><label ><br></label>{% if form.is_bound %}{% if form.sector_2.errors %}{{form.sector_2 | attr:'class:form-control is-invalid' }} {% for error in form.sector_2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.sector_2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.sector_2 | attr:'class:form-control' }}{% endif %}{% if form.sector_2.help_text %}<small class="form-text text-muted">{{ form.sector_2.help_text }}</small>{% endif %}</div>
+</div>
+        <div class="input-group">
+            {#%endif%#}
+<div class="form-group">{% if form.is_bound %}{% if form.avenida_1.errors %}{{form.avenida_1 | attr:'class:form-control is-invalid' }} {% for error in form.avenida_1.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.avenida_1 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.avenida_1 | attr:'class:form-control' }}{% endif %}{% if form.avenida_1.help_text %}<small class="form-text text-muted">{{ form.avenida_1.help_text }}</small>{% endif %}</div>
+<div class="form-group">{% if form.is_bound %}{% if form.numero_1.errors %}{{form.numero_1 | attr:'class:form-control is-invalid' }} {% for error in form.numero_1.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.numero_1 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.numero_1 | attr:'class:form-control' }}{% endif %}{% if form.numero_1.help_text %}<small class="form-text text-muted">{{ form.numero_1.help_text }}</small>{% endif %}</div>-
+            <div class="form-group">{% if form.is_bound %}{% if form.letra_1.errors %}{{form.letra_1 | attr:'class:form-control is-invalid' }} {% for error in form.letra_1.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.letra_1 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.letra_1 | attr:'class:form-control' }}{% endif %}{% if form.letra_1.help_text %}<small class="form-text text-muted">{{ form.letra_1.help_text }}</small>{% endif %}</div>
+            <div class="form-group">{% if form.is_bound %}{% if form.avenida_2.errors %}{{form.avenida_2 | attr:'class:form-control is-invalid' }} {% for error in form.avenida_2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.avenida_2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.avenida_2 | attr:'class:form-control' }}{% endif %}{% if form.avenida_2.help_text %}<small class="form-text text-muted">{{ form.avenida_2.help_text }}</small>{% endif %}</div>
+<div class="form-group">{% if form.is_bound %}{% if form.numero_2.errors %}{{form.numero_2 | attr:'class:form-control is-invalid' }} {% for error in form.numero_2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.numero_2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.numero_2 | attr:'class:form-control' }}{% endif %}{% if form.numero_2.help_text %}<small class="form-text text-muted">{{ form.numero_2.help_text }}</small>{% endif %}</div>
+<div class="form-group">{% if form.is_bound %}{% if form.letra_2.errors %}{{form.letra_2 | attr:'class:form-control nis-invalid' }} {% for error in form.letra_2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.letra_2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.letra_2 | attr:'class:form-control' }}{% endif %}{% if form.letra_2.help_text %}<small class="form-text text-muted">{{ form.letra_2.help_text }}</small>{% endif %}</div>
+            <div class="form-group">{% if form.is_bound %}{% if form.detalle_1_opc.errors %}{{form.detalle_1_opc | attr:'class:form-control is-invalid' }} {% for error in form.detalle_1_opc.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.detalle_1_opc | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.detalle_1_opc | attr:'class:form-control' }}{% endif %}{% if form.detalle_1_opc.help_text %}<small class="form-text text-muted">{{ form.detalle_1_opc.help_text }}</small>{% endif %}</div>
+            <div class="form-group">{% if form.is_bound %}{% if form.detalle_1.errors %}{{form.detalle_1 | attr:'class:form-control is-invalid' }} {% for error in form.detalle_1.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.detalle_1 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.detalle_1 | attr:'class:form-control' }}{% endif %}{% if form.detalle_1.help_text %}<small class="form-text text-muted">{{ form.detalle_1.help_text }}</small>{% endif %}</div>
+<div class="form-group">{% if form.is_bound %}{% if form.detalle_2_opc.errors %}{{form.detalle_2_opc | attr:'class:form-control is-invalid' }} {% for error in form.detalle_2_opc.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.detalle_2_opc | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.detalle_2_opc | attr:'class:form-control' }}{% endif %}{% if form.detalle_2_opc.help_text %}<small class="form-text text-muted">{{ form.detalle_2_opc.help_text }}</small>{% endif %}</div>
+                        <div class="form-group">{% if form.is_bound %}{% if form.detalle_2.errors %}{{form.detalle_2 | attr:'class:form-control is-invalid' }} {% for error in form.detalle_2.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.detalle_2 | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.detalle_2 | attr:'class:form-control' }}{% endif %}{% if form.detalle_2.help_text %}<small class="form-text text-muted">{{ form.detalle_2.help_text }}</small>{% endif %}</div>
+
+                                                            {% endif %}
+    <div class="form-group">{{ form.scoring.label_tag }}{% if form.is_bound %}{% if form.scoring.errors %}{{form.scoring | attr:'class:form-control is-invalid' }} {% for error in form.scoring.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.scoring | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.scoring | attr:'class:form-control' }}{% endif %}{% if form.scoring.help_text %}<small class="form-text text-muted">{{ form.scoring.help_text }}</small>{% endif %}</div>
+            <hr>
+      <button type="submit" class="btn btn-primary">Responder</button>
+</form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xl-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <img src="/media/{{documento.foto}}" alt="" width="45%">
+                                            <span><h3>{{documento.tipo_documento}} # {{documento.numero_documento}}</h3></span>
+                                            <embed src="/media/{{documento.documento}}" width="130%" height="900px" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+{% endblock content %}
+{% block javascripts %}
+<script src="/static/smart-selects/admin/js/chainedfk.js"></script>
+<script src="/static/smart-selects/admin/js/bindfields.js"></script>
+{% endblock javascripts %}

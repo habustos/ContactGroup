@@ -1,0 +1,477 @@
+{% extends "layouts/base.html" %}
+{% load widget_tweaks %}
+
+{% block title %} Ventas {% endblock %}
+{% block content %}
+    <section class="pcoded-main-container">
+        <div class="pcoded-content">
+            <div class="page-header">
+                <div class="page-block">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="page-header-title">
+                                <h5 class="m-b-10">Formularío de ventas</h5>
+                            </div>
+                            <ul class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="index.html"><i class="feather icon-home"></i></a></li>
+                                <li class="breadcrumb-item"><a href="#!">Formularios</a></li>
+                                <li class="breadcrumb-item"><a href="#!">Ventas</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+         {% if message.tags %}
+<div class="alert alert-warning" role="alert">
+    {{ message }}
+</div>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Ingrese la información del cliente</h5>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12">
+{% load widget_tweaks %}
+<form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" >Nombres: </span>
+  </div>
+<div class="form-group">{% if form.is_bound %}{% if form.primer_nombre.errors %}{{form.primer_nombre | attr:'class:form-control is-invalid' }} {% for error in form.primer_nombre.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.primer_nombre | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.primer_nombre | attr:'class:form-control' }}{% endif %}{% if form.primer_nombre.help_text %}<small class="form-text text-muted">{{ form.primer_nombre.help_text }}</small>{% endif %}</div>
+<div class="form-group">{% if form.is_bound %}{% if form.segundo_nombre.errors %}{{form.segundo_nombre | attr:'class:form-control is-invalid' }} {% for error in form.segundo_nombre.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.segundo_nombre | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.segundo_nombre | attr:'class:form-control' }}{% endif %}{% if form.segundo_nombre.help_text %}<small class="form-text text-muted">{{ form.segundo_nombre.help_text }}</small>{% endif %}</div>
+
+</div>
+    <br>
+    <div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text" >Apellidos: </span>
+  </div>
+<div class="form-group">{% if form.is_bound %}{% if form.apellidos.errors %}{{form.apellidos | attr:'class:form-control is-invalid' }} {% for error in form.apellidos.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.apellidos | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.apellidos | attr:'class:form-control' }}{% endif %}{% if form.apellidos.help_text %}<small class="form-text text-muted">{{ form.apellidos.help_text }}</small>{% endif %}</div>
+</div>
+    <br>
+        <div class="form-group">{{ form.numero_documento.label_tag }}{% if form.is_bound %}{% if form.numero_documento.errors %}{{form.numero_documento | attr:'class:form-control is-invalid' }} {% for error in form.numero_documento.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.numero_documento | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.numero_documento | attr:'class:form-control' }}{% endif %}{% if form.numero_documento.help_text %}<small class="form-text text-muted">{{ form.numero_documento.help_text }}</small>{% endif %}</div>
+    <div class="form-group">{{ form.fecha_expedicion.label_tag }}{% if form.is_bound %}{% if form.fecha_expedicion.errors %}{{form.fecha_expedicion | attr:'class:form-control is-invalid' }} {% for error in form.fecha_expedicion.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.fecha_expedicion | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.fecha_expedicion | attr:'class:form-control' }}{% endif %}{% if form.fecha_expedicion.help_text %}<small class="form-text text-muted">{{ form.fecha_expedicion.help_text }}</small>{% endif %}</div>
+    <div class="form-group">{{ form.fecha_nacimiento.label_tag }}{% if form.is_bound %}{% if form.fecha_nacimiento.errors %}{{form.fecha_nacimiento | attr:'class:form-control is-invalid' }} {% for error in form.fecha_nacimiento.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.fecha_nacimiento | attr:'class:form-control is-valid' }}{% endif %}{% else %}{% render_field form.fecha_nacimiento class="form-control" type="date" value="{{cliente.fecha_nacimiento}}" %}{% endif %}{% if form.fecha_nacimiento.help_text %}<small class="form-text text-muted">{{ form.fecha_nacimiento.help_text }}</small>{% endif %}</div>
+    <hr>
+        <h6>Lugar de expedición</h6>
+    <div class="input-group">
+<div class="form-group">{{ form.departamento.label_tag }}{% if form.is_bound %}{% if form.departamento.errors %}{{form.departamento | attr:'class:form-control is-invalid' }} {% for error in form.departamento.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.departamento | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.departamento | attr:'class:form-control' }}{% endif %}{% if form.departamento.help_text %}<small class="form-text text-muted">{{ form.departamento.help_text }}</small>{% endif %}</div>
+<div class="form-group">{{ form.municipio.label_tag }}{% if form.is_bound %}{% if form.municipio.errors %}{{form.municipio | attr:'class:form-control is-invalid' }} {% for error in form.municipio.errors %}<div class="invalid-feedback">{{ error }}</div>{% endfor %}{% else %}{{form.municipio | attr:'class:form-control is-valid' }}{% endif %}{% else %}{{form.municipio | attr:'class:form-control' }}{% endif %}{% if form.municipio.help_text %}<small class="form-text text-muted">{{ form.municipio.help_text }}</small>{% endif %}</div>
+    </div>
+<br>
+<br>
+  <!--<a href="/Busqueda_Cedula">Atras</a>-->
+    {%if documento.tipo_venta != "MOVIL"%}
+    <hr>
+        <h6>Lugar de Instalación</h6>
+    <div class="input-group">
+<div class="form-group"><label for="id_departamento_domicilio">Departamento domicilio:</label><select name="departamento_domicilio" class="form-control is-valid" id="id_departamento_domicilio">
+  <option value="" selected>---------</option>
+
+  <option value="1">AMAZONAS</option>
+
+  <option value="2">ANTIOQUIA</option>
+
+  <option value="3">ARAUCA</option>
+
+  <option value="4">ARCHIPIELAGO DE SAN ANDRES</option>
+
+  <option value="5">ATLÁNTICO</option>
+
+  <option value="6">BOGOTÁ D.C.</option>
+
+  <option value="7">BOLIVAR</option>
+
+  <option value="8">BOYACÁ</option>
+
+  <option value="9">CALDAS</option>
+
+  <option value="10">CAQUETA</option>
+
+  <option value="11">CASANARE</option>
+
+  <option value="12">CAUCA</option>
+
+  <option value="13">CESAR</option>
+
+  <option value="14">CHOCO</option>
+
+  <option value="15">CORDOBA</option>
+
+  <option value="16">CUNDINAMARCA</option>
+
+  <option value="17">GUAINIA</option>
+
+  <option value="18">GUAVIARE</option>
+
+  <option value="19">HUILA</option>
+
+  <option value="20">LA GUAJIRA</option>
+
+  <option value="21">MAGDALENA</option>
+
+  <option value="22">META</option>
+
+  <option value="23">NARIÑO</option>
+
+  <option value="24">NORTE DE SANTANDER</option>
+
+  <option value="25">PUTUMAYO</option>
+
+  <option value="26">QUINDIO</option>
+
+  <option value="27">RISARALDA</option>
+
+  <option value="28">SANTANDER</option>
+
+  <option value="29">SUCRE</option>
+
+  <option value="30">TOLIMA</option>
+
+  <option value="31">VALLE DEL CAUCA</option>
+
+  <option value="32">VAUPES</option>
+
+  <option value="33">VICHADA</option>
+
+  <option value="34">AMAZONAS</option>
+
+  <option value="35">ANTIOQUIA</option>
+
+  <option value="36">ARAUCA</option>
+
+  <option value="37">ARCHIPIELAGO DE SAN ANDRES</option>
+
+  <option value="38">ATLÁNTICO</option>
+
+  <option value="39">BOGOTÁ D.C.</option>
+
+  <option value="40">BOLIVAR</option>
+
+  <option value="41">BOYACÁ</option>
+
+  <option value="42">CALDAS</option>
+
+  <option value="43">CAQUETA</option>
+
+  <option value="44">CASANARE</option>
+
+  <option value="45">CAUCA</option>
+
+  <option value="46">CESAR</option>
+
+  <option value="47">CHOCO</option>
+
+  <option value="48">CORDOBA</option>
+
+  <option value="49">CUNDINAMARCA</option>
+
+  <option value="50">GUAINIA</option>
+
+  <option value="51">GUAVIARE</option>
+
+  <option value="52">HUILA</option>
+
+  <option value="53">LA GUAJIRA</option>
+
+  <option value="54">MAGDALENA</option>
+
+  <option value="55">META</option>
+
+  <option value="56">NARIÑO</option>
+
+  <option value="57">NORTE DE SANTANDER</option>
+
+  <option value="58">PUTUMAYO</option>
+
+  <option value="59">QUINDIO</option>
+
+  <option value="60">RISARALDA</option>
+
+  <option value="61">SANTANDER</option>
+
+  <option value="62">SUCRE</option>
+
+  <option value="63">TOLIMA</option>
+
+  <option value="64">VALLE DEL CAUCA</option>
+
+  <option value="65">VAUPES</option>
+
+  <option value="66">VICHADA</option>
+
+</select></div>
+<div class="form-group"><label for="id_municipi_domicilio">Municipi domicilio:</label><select name="municipi_domicilio" class="form-control is-valid chained-fk" id="id_municipi_domicilio" data-chainfield="departamento_domicilio" data-url="/chaining/filter/Ventas/Municipio_domicilio/departamento_domicilio/Ventas/Cliente/municipi_domicilio" data-value="null" data-auto_choose="true" data-empty_label="--------" name="municipi_domicilio">
+</select></div>
+    <div class="form-group"></div>
+<div class="form-group"></div>    </div>
+    <div class="input-group">
+        <div class="form-group"><label ><br></label>sector<select name="sector_1" class="form-control is-valid" id="id_sector_1">
+  <option value="" selected>---------</option>
+
+  <option value="Barrio">Barrio</option>
+
+  <option value="Zona franca">Zona franca</option>
+
+  <option value="Apartado">Apartado</option>
+
+  <option value="Corregimiento">Corregimiento</option>
+
+  <option value="Caserío">Caserío</option>
+
+  <option value="Parcela">Parcela</option>
+
+  <option value="Vereda">Vereda</option>
+
+</select></div>
+        <div class="form-group"><label ><br></label><input type="text" name="sector_2" maxlength="300" class="form-control is-valid" id="id_sector_2"></div>
+</div>
+        <div class="input-group">
+<div class="form-group"><select name="avenida_1" class="form-control is-valid" id="id_avenida_1">
+  <option value="" selected>---------</option>
+
+  <option value="Calle">Calle</option>
+
+  <option value="Carrera">Carrera</option>
+
+  <option value="Diagonal">Diagonal</option>
+
+  <option value="Transversal">Transversal</option>
+
+  <option value="Manzana">Manzana</option>
+
+  <option value="Camino">Camino</option>
+
+  <option value="Callejón">Callejón</option>
+
+  <option value="Circunvalar">Circunvalar</option>
+
+  <option value="Autopista">Autopista</option>
+
+  <option value="Esquina">Esquina</option>
+
+  <option value="Kilómetro">Kilómetro</option>
+
+  <option value="Carretera">Carretera</option>
+
+  <option value="Variante">Variante</option>
+
+</select></div>
+<div class="form-group"><input type="number" name="numero_1" class="form-control is-valid" id="id_numero_1"></div>-
+            <div class="form-group"><select name="letra_1" class="form-control is-valid" id="id_letra_1">
+  <option value="" selected>---------</option>
+
+  <option value="BIS">BIS</option>
+
+  <option value="A">A</option>
+
+  <option value="B">B</option>
+
+  <option value="C">C</option>
+
+  <option value="D">D</option>
+
+  <option value="E">E</option>
+
+  <option value="F">F</option>
+
+  <option value="G">G</option>
+
+  <option value="H">H</option>
+
+  <option value="I">I</option>
+
+  <option value="J">J</option>
+
+  <option value="K">K</option>
+
+  <option value="L">L</option>
+
+  <option value="M">M</option>
+
+  <option value="N">N</option>
+
+  <option value="Ñ">Ñ</option>
+
+  <option value="O">O</option>
+
+  <option value="P">P</option>
+
+</select></div>
+            <div class="form-group"><select name="avenida_2" class="form-control is-valid" id="id_avenida_2">
+  <option value="" selected>---------</option>
+
+  <option value="Calle">Calle</option>
+
+  <option value="Carrera">Carrera</option>
+
+  <option value="Diagonal">Diagonal</option>
+
+  <option value="Transversal">Transversal</option>
+
+  <option value="Manzana">Manzana</option>
+
+  <option value="Camino">Camino</option>
+
+  <option value="Callejón">Callejón</option>
+
+  <option value="Circunvalar">Circunvalar</option>
+
+  <option value="Autopista">Autopista</option>
+
+  <option value="Esquina">Esquina</option>
+
+  <option value="Kilómetro">Kilómetro</option>
+
+  <option value="Carretera">Carretera</option>
+
+  <option value="Variante">Variante</option>
+
+</select></div>
+<div class="form-group"><input type="number" name="numero_2" class="form-control is-valid" id="id_numero_2"></div>
+<div class="form-group"><select name="letra_2" class="form-control is-valid" id="id_letra_2">
+  <option value="" selected>---------</option>
+
+  <option value="BIS">BIS</option>
+
+  <option value="A">A</option>
+
+  <option value="B">B</option>
+
+  <option value="C">C</option>
+
+  <option value="D">D</option>
+
+  <option value="E">E</option>
+
+  <option value="F">F</option>
+
+  <option value="G">G</option>
+
+  <option value="H">H</option>
+
+  <option value="I">I</option>
+
+  <option value="J">J</option>
+
+  <option value="K">K</option>
+
+  <option value="L">L</option>
+
+  <option value="M">M</option>
+
+  <option value="N">N</option>
+
+  <option value="Ñ">Ñ</option>
+
+  <option value="O">O</option>
+
+  <option value="P">P</option>
+
+</select></div>
+            <div class="form-group"><select name="detalle_1_opc" class="form-control is-valid" id="id_detalle_1_opc">
+  <option value="" selected>---------</option>
+
+  <option value="Agrupación">Agrupación</option>
+
+  <option value="Edificio">Edificio</option>
+
+  <option value="Interior">Interior</option>
+
+  <option value="Bloque">Bloque</option>
+
+  <option value="Unidad residencial">Unidad residencial</option>
+
+  <option value="Urbanización">Urbanización</option>
+
+  <option value="Centro comercial">Centro comercial</option>
+
+  <option value="Ciudadela">Ciudadela</option>
+
+  <option value="Agencia">Agencia</option>
+
+  <option value="Bodega">Bodega</option>
+
+  <option value="Depósito">Depósito</option>
+
+  <option value="Finca">Finca</option>
+
+  <option value="Hacienda">Hacienda</option>
+
+  <option value="Interior">Interior</option>
+
+  <option value="Lote">Lote</option>
+
+  <option value="Muelle">Muelle</option>
+
+  <option value="Parque">Parque</option>
+
+  <option value="Pasaje">Pasaje</option>
+
+</select></div>
+            <div class="form-group"><input type="text" name="detalle_1" maxlength="300" class="form-control is-valid" id="id_detalle_1"></div>
+<div class="form-group"><select name="detalle_2_opc" class="form-control is-valid" id="id_detalle_2_opc">
+  <option value="Casa">Casa</option>
+
+  <option value="Consultorio">Consultorio</option>
+
+  <option value="Local">Local</option>
+
+  <option value="Oficina">Oficina</option>
+
+  <option value="Piso">Piso</option>
+
+  <option value="Almacén">Almacén</option>
+
+  <option value="" selected></option>
+
+</select></div>
+                        <div class="form-group"><input type="text" name="detalle_2" maxlength="300" class="form-control is-valid" id="id_detalle_2"></div>
+</div>
+    {% endif %}
+    <span>aprobación supervisor</span>
+                            <div class="form-group"><input type="text" name="aprobacion" class="form-control is-valid" id="aprobacion"></div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+</form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 col-xl-6">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-auto">
+                                            <img src="/media/{{documento.foto}}" alt="" width="45%">
+                                            <span><h3>{{documento.tipo_documento}} # {{documento.numero_documento}}</h3></span>
+                                            <embed src="/media/{{documento.documento}}" width="130%" height="900px" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock content %}
+{% block javascripts %}
+<script src="/static/smart-selects/admin/js/chainedfk.js"></script>
+<script src="/static/smart-selects/admin/js/bindfields.js"></script>
+{% endblock javascripts %}

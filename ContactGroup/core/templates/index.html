@@ -1,0 +1,323 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}	
+
+    <!-- [ Main Content ] start -->
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            <div class="row">
+                <!-- order-card start -->
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-c-green order-card">
+                        <div class="card-body">
+                            <a href="/Busqueda_Cedula">
+                            <!--<a href="/C_add" data-toggle="modal" data-target="#BusquedaCliente">-->
+                            <h6 class="text-white">Ventas</h6>
+                            <h2 class="text-right text-white"><i class="feather icon-shopping-cart float-left"></i><span>486</span></h2>
+                            <p class="m-b-0">Este mes<span class="float-right">351</span></p>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-c-green order-card">
+                        <div class="card-body">
+                            <a href="/C_add">
+                            <h6 class="text-white">Seguimientos</h6>
+                            <h2 class="text-right text-white"><i class="feather icon-tag float-left"></i><span>1641</span></h2>
+                            <p class="m-b-0">Este mes<span class="float-right">213</span></p>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-c-yellow order-card">
+                        <div class="card-body">
+                            <h6 class="text-white">4564654</h6>
+                            <h2 class="text-right text-white"><i class="feather icon-repeat float-left"></i><span>42,562</span></h2>
+                            <p class="m-b-0">Promedio<span class="float-right">5,032</span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-xl-3">
+                    <div class="card bg-c-red order-card">
+                        <div class="card-body">
+                            <h6 class="text-white">Alertas de seguimientos</h6>
+                            <h2 class="text-right text-white"><i class="feather icon-alert-triangle float-left"></i><span>9562</span></h2>
+                            <p class="m-b-0">Este mes<span class="float-right">542</span></p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                {% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+         {% if message.tags %}
+<div class="alert alert-warning" role="alert">
+    {{ message }}
+</div>
+    {% endif %}
+    {% endfor %}
+</ul>
+{% endif %}
+                <div class="col-lg-12">
+                    <div class="card table-card">
+                        <div class="card-header">
+                            <h5>Solicitudes</h5>
+                            <div class="card-header-right">
+                                <div class="btn-group card-option">
+                                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="feather icon-more-horizontal"></i>
+                                    </button>
+                                    <ul class="list-unstyled card-option dropdown-menu dropdown-menu-right">
+                                        <li class="dropdown-item full-card"><a href="#!"><span><i class="feather icon-maximize"></i> maximize</span><span style="display:none"><i class="feather icon-minimize"></i> Restore</span></a></li>
+                                        <li class="dropdown-item minimize-card"><a href="#!"><span><i class="feather icon-minus"></i> collapse</span><span style="display:none"><i class="feather icon-plus"></i> expand</span></a></li>
+                                        <li class="dropdown-item reload-card"><a href="#!"><i class="feather icon-refresh-cw"></i> reload</a></li>
+                                        <li class="dropdown-item close-card"><a href="#!"><i class="feather icon-trash"></i> remove</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            {{grupo}}
+                            <ul class="nav nav-pills nav-fill mt-3 border-bottom pb-3" id="pills-tab" role="tablist">
+                                {%if grupo == 'agentes' or grupo == 'administradores'%}
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="false"><i class="feather icon-user m-r-5"></i> Asesores</a>
+                                </li>
+                                {%endif%}
+                                {%if grupo == 'scoring' or grupo == 'administradores'%}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false"><i class="feather icon-file-text m-r-5"></i>Scoring</a>
+                                </li>
+                                {%endif%}
+                                {%if grupo == 'cobertura' or grupo == 'administradores'%}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false"><i class="feather icon-map m-r-5"></i>Cobertura</a>
+                                </li>
+                                {%endif%}
+                                {%if grupo == 'backoffice' or grupo == 'administradores'%}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-backoffice-tab" data-toggle="pill" href="#pills-backoffice" role="tab" aria-controls="pills-backoffice" aria-selected="false"><i class="feather icon-check-square m-r-5"></i>Backoffice</a>
+                                </li>
+                                {%endif%}
+                                {%if grupo == 'recepcion' or grupo == 'administradores'%}
+                                <li class="nav-item">
+                                    <a class="nav-link" id="pills-despacho-tab" data-toggle="pill" href="#pills-despacho" role="tab" aria-controls="pills-despacho" aria-selected="false"><i class="feather icon-inbox m-r-5"></i>Despacho y mensajería</a>
+                                </li>
+                                {%endif%}
+                            </ul>
+                        </div>
+                        <div class="card-body p-0">
+                            <div class="tab-content" id="pills-tabContent">
+                                {%if grupo == 'agentes' or grupo == 'administradores'%}
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                                    <div class="table-responsive">
+                                        <div class="customer-scroll" style="height:420px;position:relative;">
+                                            <table class="table table-hover m-b-0">
+                                                <thead>
+
+                                                <tr>
+                                                        <th><span>Fecha Solicitud</span></th>
+                                                        <th><span>Cliente</span></th>
+                                                        <th><span>Scoring</span></th>
+                                                        <th><span>Continuar</span></th>
+                                                        {%if asesores.aprobacion_supervisor is Null%}
+                                                        <th><span>Aprobar</span></th>
+                                                        {%endif%}
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                    {%for i in asesores %}
+                                                <tr><td>{{i.fecha_ingreso}}</td>
+                                                <td>{{i.numero_documento}}</td>
+                                                <td>{{i.scoring}}</td>
+                                                    {%if i.scoring != "ANULADO"%}
+                                                    <td><a href="/venta/{{i.numero_documento}}">continuar</a></td>
+                                                    {%endif%}
+                                                    {%if i.scoring == "APROBADO" and i.supervisor%}
+                                                <td><button type="submit" class="btn btn-success float-right"><a href="/venta/{{i.numero_documento}}">APROBAR</a></button></td>
+                                                    {%endif%}
+                                                    {%comment%}
+                                                    {#%if i.scoring == "APROBADO" and i.venta_token==""%#}
+                                                    <td><button type="submit" class="btn btn-success float-right"><a href="/venta/{{i.numero_documento}}">APROBAR</a></button></td>
+                                                    {%endif%}
+                                                    {%if i.scoring != "ANULADO"%}
+                                                    <td><a href="/venta/{{i.numero_documento}}">continuar</a></td>
+                                                    {%else%}
+                                                    {%if i.scoring == "APROBADO"%}
+                                                    <td><button type="submit" class="btn btn-success float-right"><a href="/venta/{{i.numero_documento}}">APROBAR</a></button></td>
+                                                    {%endif%}
+                                                    {%endif%}
+                                                    {%endcomment%}
+                                                </tr>
+                                                {%endfor%}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endif%}
+                                {%if grupo == 'scoring' or grupo == 'administradores'%}
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                                    <div class="table-responsive">
+                                        <div class="customer-scroll1" style="height:420px;position:relative;">
+                                            <table class="table table-hover m-b-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span>Fecha Solicitud</span></th>
+                                                        <th><span>Cliente <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                        <th><span>Scoring <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                        <th><span>Asesor <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                        <th><span>Continuar <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {%for i in scoring %}
+                                                <tr><td>{{i.fecha_ingreso}}</td>
+                                                <td>{{i.numero_documento}}</td>
+                                                <td>{{i.scoring}}</td>
+                                                <td>{{i.asesor}}</td>
+
+                                                    <td><a href="/scoring/{{i.numero_documento}}">Continuar</a></td>
+
+                                                </tr>
+                                                {%endfor%}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endif%}
+                                {%if grupo == 'cobertura' or grupo == 'administradores'%}
+                                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                                    <div class="table-responsive">
+                                        <div class="customer-scroll2" style="height:420px;position:relative;">
+                                            <table class="table table-hover m-b-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span>Fecha Solicitud</span></th>
+                                                        <th><span>Cliente <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                        <th><span>Scoring <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                        <th><span>Continuar <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                {%for i in cobertura %}
+                                                <tr><td>{{i.fecha_ingreso}}</td>
+                                                <td>{{i.numero_documento}}</td>
+                                                <td>{{i.scoring}}</td>
+                                                    <td><a href="/cliente/{{i.numero_documento}}">{{i.scoring}}</a></td>
+                                                </tr>
+                                                {%endfor%}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endif%}
+                                {%if grupo == 'backoffice' or grupo == 'administradores'%}
+                                <div class="tab-pane fade" id="pills-backoffice" role="tabpanel" aria-labelledby="pills-backoffice-tab">
+                                    <div class="table-responsive">
+                                        <div class="customer-scroll2" style="height:420px;position:relative;">
+<table class="table table-hover m-b-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span>Fecha Solicitudd</span></th>
+                                                        <th><span>Cliente <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                        <th><span>Scoring <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                        <th><span>Continuar <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {%for i in backoffice %}
+                                                <tr><td>{{i.fecha_ingreso}}</td>
+                                                <td>{{i.numero_documento}}</td>
+                                                <td>{{i.scoring}}</td>
+                                                    {%if i.scoring == "APROBADO"%}
+                                                    <td><a href="/aprobacionbo/{{i.celular}}">continuar</a></td>
+                                                    {%endif%}
+                                                </tr>
+                                                {%endfor%}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endif%}
+                                {%if grupo == 'recepcion' or grupo != 'administradores'%}
+                                <div class="tab-pane fade" id="pills-despacho" role="tabpanel" aria-labelledby="pills-despacho-tab">
+                                    <div class="table-responsive">
+                                        <div class="customer-scroll2" style="height:420px;position:relative;">
+                                            <table class="table table-hover m-b-0">
+                                                <thead>
+                                                    <tr>
+                                                        <th><span>Fecha Solicitudd</span></th>
+                                                        <th><span>Cliente <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                        <th><span>Scoring <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                        <th><span>Continuar <a class="help" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="feather icon-help-circle f-16"></i></a></span></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {%for i in despacho %}
+                                                <tr><td>{{i.fecha_ingreso}}</td>
+                                                <td>{{i.numero_documento}}</td>
+                                                    {{i.celular}}
+                                                <td>{{i.scoring}}</td>
+                                                    {%if i.scoring == "APROBADO"%}
+                                                    <td><a href="/despachosim/{{i.celular}}">continuar</a></td>
+                                                    {%endif%}
+                                                </tr>
+                                                {%endfor%}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                {%endif%}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <div>
+    <div class="modal fade" data-backdrop="false" id="BusquedaCliente" tabindex="-1" role="dialog" aria-labelledby="scrollmodalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" >Total Móvil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+                         {% include 'modals/BusquedaCliente.html' %}
+      </div>
+      <div class="modal-footer">
+                         Contact Group © 2020
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+    <!-- Apex Chart -->
+    <script src="/static/assets/js/plugins/apexcharts.min.js"></script>
+    <!-- custom-chart js -->
+    <script src="/static/assets/js/pages/dashboard-main.js"></script>
+
+{% endblock javascripts %}
